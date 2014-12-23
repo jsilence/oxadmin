@@ -1,5 +1,5 @@
 angular.module('io.risu.goldbin.core')
-    .provider('SettingsService', function () {
+    .provider('SettingService', function () {
 
         var _settings = {};
 

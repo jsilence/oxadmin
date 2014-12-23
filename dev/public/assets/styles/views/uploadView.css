@@ -1,0 +1,9 @@
+.upload.view .method-panel {
+  min-height: 300px;
+}
+
+.upload.view .plaintext.method-panel textarea {
+  height: 300px;
+  resize: vertical;
+}
+

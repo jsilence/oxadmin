@@ -1,3 +1,11 @@
+[ng-click] {
+  cursor: pointer;
+}
+
 body {
   background-color: #fefefe;
+}
+
+.view {
+  margin-top: 35px;
 }

@@ -22,7 +22,8 @@
                ng-multiple="false"
                allow-dir="false"
                accept="{{allowedPlaintextMimes}}"
-               ng-file-change="onUpload('plaintext', files)">
+               ng-file-change="onUpload('plaintext', files)"
+               ng-click="onUpload('plaintext')">
 
                 <span class="fa fa-file-text-o"></span>
                 <span class="caption">Plaintext</span>
@@ -34,7 +35,8 @@
                ng-multiple="false"
                allow-dir="false"
                accept="{{allowedPlaintextMimes}}"
-               ng-file-change="onUpload('binary', files)">
+               ng-file-change="onUpload('binary', files)"
+               ng-click="onUpload('binary')">
 
                 <span class="fa fa-paperclip"></span>
                 <span class="caption">Binary</span>

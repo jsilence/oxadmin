@@ -1,5 +1,5 @@
 angular.module('io.risu.goldbin.landing')
-    .factory('UploadService',
+    .factory('LandingService',
     ['$http', function ($http) {
         return {
 

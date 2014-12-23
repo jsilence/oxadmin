@@ -13,8 +13,9 @@
         'angularFileUpload',
 
         'io.risu.goldbin.components',
-        'io.risu.goldbin.landing',
         'io.risu.goldbin.core',
+        'io.risu.goldbin.landing',
+        'io.risu.goldbin.upload',
 
         'templates'
     ]);
