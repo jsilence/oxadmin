@@ -1,10 +1,11 @@
 <section class="landing view">
     <div class="row">
         <div class="teaser one-half column">
-            <h4>Trashbin</h4>
+            <h4>Risu Goldbin</h4>
 
             <p>
-                Upload files anonymously and with ease. We offer services for <strong>plaintext</strong> and <strong>binary</strong> files.
+                Upload files anonymously and with ease. We offer services for
+                <a href="#">plaintext</a> and <a href="#">binary</a> files.
                 Start your upload by clicking on the desired format on the right side, beneath this text.
             </p>
 
@@ -14,15 +15,31 @@
         </div>
 
         <div class="dropzones one-half column">
-            <a class="button button-primary">
+
+            <a class="button button-primary drop-box"
+               ng-file-drop ng-model="files"
+               drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+               ng-multiple="false"
+               allow-dir="false"
+               accept="{{allowedPlaintextMimes}}"
+               ng-file-change="onUpload('plaintext', files)">
+
                 <span class="fa fa-file-text-o"></span>
                 <span class="caption">Plaintext</span>
             </a>
 
-            <a class="button button-primary">
+            <a class="button button-primary drop-box"
+               ng-file-drop ng-model="files"
+               drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+               ng-multiple="false"
+               allow-dir="false"
+               accept="{{allowedPlaintextMimes}}"
+               ng-file-change="onUpload('binary', files)">
+
                 <span class="fa fa-paperclip"></span>
                 <span class="caption">Binary</span>
             </a>
+
         </div>
 
         </div>

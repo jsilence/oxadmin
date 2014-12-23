@@ -38,11 +38,16 @@
 <script src="/vendor/jquery/dist/jquery.js"></script>
 <script src="/vendor/angular/angular.js"></script>
 <script src="/vendor/angular-route/angular-route.js"></script>
+<script src="/vendor/ng-file-upload/angular-file-upload-shim.js"></script>
+<script src="/vendor/ng-file-upload/angular-file-upload.js"></script>
 <!-- endbuild -->
 
 <!-- gulp:goldbin:templates -->
 
 <!-- build:app scripts/goldbin.js -->
+<script src="/scripts/goldbin/core/module.js"></script>
+<script src="/scripts/goldbin/core/src/services/settingsService.js"></script>
+
 <script src="/scripts/goldbin/components/module.js"></script>
 <script src="/scripts/goldbin/components/src/directives/confirmedClickDirective.js"></script>
 <script src="/scripts/goldbin/components/src/directives/ngEnterDirective.js"></script>
@@ -55,6 +60,7 @@
 <script src="/scripts/goldbin/app.js"></script>
 <script src="/scripts/goldbin/config/routes.js"></script>
 <script src="/scripts/goldbin/config/navigation.js"></script>
+<script src="/scripts/goldbin/config/application.js"></script>
 
 <!-- endbuild -->
 

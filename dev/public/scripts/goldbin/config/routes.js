@@ -3,7 +3,7 @@ angular.module('io.risu.goldbin')
         $routeProvider
             .when('/start', {
                 templateUrl: 'scripts/goldbin/landing/src/views/controllers/landingView.html',
-                controller: 'landingController'
+                controller: 'LandingController'
             })
             .otherwise({
                 redirectTo: '/start'
