@@ -1,0 +1,47 @@
+{
+  "name": "goldbin",
+  "version": "0.0.0",
+  "description": "Goldbin is a pastebin alike service as API for fun an profit.",
+  "author": "Dennis Wilson",
+  "main": "dev/app.js",
+  "scripts": {
+    "test": "./node_modules/.bin/_mocha -- --recursive test -r should"
+  },
+  "dependencies": {
+    "q": "1.0.1",
+    "async": "0.7.0",
+    "boom": "^2.6.1",
+    "hapi": "^8.0.0",
+    "hapi-auth-cookie": "^2.0.0",
+    "hapi-router": "^2.0.0",
+    "jsesc": "^0.5.0",
+    "moment": "^2.8.1",
+    "moment-timezone": "^0.2.1",
+    "request": "^2.42.0",
+    "sanitizer": "^0.1.2",
+    "shush": "0.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.3.4",
+    "gulp-gzip": "0.0.8",
+    "gulp-minify-css": "^0.3.7",
+    "gulp-minify-html": "^0.1.7",
+    "gulp-ng-html2js": "^0.1.8",
+    "gulp-replace": "^0.4.0",
+    "gulp-tar": "^1.3.1",
+    "gulp-uglify": "^0.3.1",
+    "gulp-usemin": "^0.3.7",
+    "istanbul": "^0.3.2",
+    "jscs": "^1.6.1",
+    "jshint": "^2.5.5",
+    "karma": "^0.12.3",
+    "karma-jasmine": "^0.1.5",
+    "karma-ng-html2js-preprocessor": "^0.1.0",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "lodash": "^2.4.1",
+    "mocha": "^1.21.4",
+    "should": "^4.0.4"
+  }
+}

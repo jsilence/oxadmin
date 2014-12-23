@@ -1,0 +1,27 @@
+{
+    "name": "goldbin",
+    "version": "0.0.0",
+    "homepage": "http://www.risu.io/",
+    "authors": [
+        "Dennis Wilson <dw@risu.io>"
+    ],
+    "description": "Risu Goldbin",
+    "main": "build/**/*",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "directory": "dev/public/vendor/",
+    "dependencies": {
+        "jquery": "~2.1.0",
+        "angular": "~1.2.16",
+        "angular-route": "~1.2.21",
+        "skeleton": "~2.0.2"
+    },
+    "devDependencies": {
+        "angular-mocks": "~1.2.16"
+    }
+}

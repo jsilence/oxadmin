@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="io.risu.goldbin">
+<head>
+
+    <meta charset="utf-8">
+    <title>Goldbin</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>-->
+
+    <link rel="icon" type="image/png" href="assets/images/favicon.png"/>
+
+    <!-- build:css assets/styles/vendor.css -->
+    <link rel="stylesheet" type="text/css" href="vendor/skeleton/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="vendor/skeleton/css/skeleton.css">
+    <!-- endbuild -->
+
+    <!-- build:css assets/styles/goldbin.css -->
+    <link href="assets/styles/app.css" rel="stylesheet">
+    <!-- endbuild -->
+
+</head>
+<body>
+
+<div class="container">
+
+    <section id="main-content" class="{{viewName}} view {{viewModifier}}" ng-view>
+    </section>
+
+</div>
+
+<!-- build:jsVendor scripts/vendor.js -->
+<script src="/vendor/jquery/dist/jquery.js"></script>
+<script src="/vendor/angular/angular.js"></script>
+<script src="/vendor/angular-route/angular-route.js"></script>
+<!-- endbuild -->
+
+<!-- gulp:goldbin:templates -->
+
+<!-- build:app scripts/goldbin.js -->
+<script src="/scripts/goldbin/components/module.js"></script>
+<script src="/scripts/goldbin/components/src/directives/confirmedClickDirective.js"></script>
+<script src="/scripts/goldbin/components/src/directives/ngEnterDirective.js"></script>
+<script src="/scripts/goldbin/components/src/filters/shortenFilter.js"></script>
+
+<script src="/scripts/goldbin/upload/module.js"></script>
+<script src="/scripts/goldbin/upload/src/controllers/uploadController.js"></script>
+<script src="/scripts/goldbin/upload/src/services/uploadService.js"></script>
+
+<script src="/scripts/goldbin/app.js"></script>
+<script src="/scripts/goldbin/config/routes.js"></script>
+<script src="/scripts/goldbin/config/navigation.js"></script>
+
+<!-- endbuild -->
+
+</body>
+</html>
