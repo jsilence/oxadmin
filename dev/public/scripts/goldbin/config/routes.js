@@ -1,11 +1,11 @@
 angular.module('io.risu.goldbin')
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-            .when('/upload', {
-                templateUrl: 'scripts/goldbin/upload/src/views/controllers/uploadView.html',
-                controller: 'UploadController'
+            .when('/start', {
+                templateUrl: 'scripts/goldbin/landing/src/views/controllers/landingView.html',
+                controller: 'landingController'
             })
             .otherwise({
-                redirectTo: '/upload'
+                redirectTo: '/start'
             });
     }]);

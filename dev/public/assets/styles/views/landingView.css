@@ -1,0 +1,22 @@
+.landing.view {
+  margin-top: 25%;
+}
+
+.landing.view .dropzones .button {
+  height: 200px;
+  width: 200px;
+  margin-right: 20px;
+  padding: 0;
+}
+
+.landing.view .dropzones .button span.fa {
+  display: block;
+  font-size: 5.5em;
+  margin-top: 25%;
+  margin-bottom: 10%;
+}
+
+.landing.view .dropzones .button span.caption {
+  font-size: 2.5em;
+}
+

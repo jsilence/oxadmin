@@ -12,7 +12,7 @@
         'ngRoute',
 
         'io.risu.goldbin.components',
-        'io.risu.goldbin.upload',
+        'io.risu.goldbin.landing',
 
         'templates'
     ]);
