@@ -1,11 +1,11 @@
 {
-  "name": "goldbin",
+  "name": "thinbin",
   "version": "0.0.0",
   "homepage": "http://www.risu.io/",
   "authors": [
     "Dennis Wilson <dw@risu.io>"
   ],
-  "description": "Risu Goldbin",
+  "description": "Risu Thinbin",
   "main": "build/**/*",
   "ignore": [
     "**/.*",

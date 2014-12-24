@@ -40,7 +40,7 @@ gulp.task('clean-all', function () {
 
 
 gulp.task('freeze', function () {
-    var filename = [Date.now(), 'goldbin.tar'].join('-');
+    var filename = [Date.now(), 'thinbin.tar'].join('-');
 
     return gulp.src('build/**/*')
         .pipe(tar(filename))
@@ -62,7 +62,7 @@ gulp.task('assets', ['clean-client'], function () {
 
 gulp.task('usemin', ['clean-client'], function () {
     return gulp.src(PATHS.app)
-        .pipe(replace('<!-- gulp:goldbin:templates -->', '<script src="scripts/goldbin.templates.js"></script>'))
+        .pipe(replace('<!-- gulp:thinbin:templates -->', '<script src="scripts/goldbin.templates.js"></script>'))
         .pipe(usemin({
             css: [minifyCss()]
         }))
