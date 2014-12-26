@@ -1,0 +1,36 @@
+{
+    "hostname": "thinbin.risu.io",
+    "port": 8001,
+    "public": "/public",
+
+    "shared": {
+        "maxFileSizeBytes": 524288000,
+        "allowedPlaintextMimes": [
+            "text/plain",
+            "*/*"
+        ],
+        "allowedBinaryMimes": [
+            "*/*"
+        ],
+        "retentions": {
+            "_30_minutes": 1800000,
+            "_60_minutes": 3600000,
+            "_12_hours": 43200000,
+            "_24_hours": 86400000,
+            "_1_week": 604800000,
+            "_1_month": 2678400000,
+            "_3_months": 8035200000,
+            "_6_months": 16070400000,
+            "_1_year": 32140800000
+        },
+        "displayModes": {
+            "_plain_text": "_plain_text",
+            "_javascript": "_javascript",
+            "_html": "_html",
+            "_css": "_css",
+            "_sql": "_sql",
+            "_bash": "_plain_text",
+            "_c": "_c"
+        }
+    }
+}

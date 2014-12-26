@@ -12,7 +12,6 @@ function handleGetFile(request, reply) {
         .readFile(request.params.id)
         .then(function (fileDocument) {
             reply(fileDocument);
-            reply(error);
         })
         .catch(function () {
             var error = Boom.create(500, 'unexpected error during read file');

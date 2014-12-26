@@ -43,9 +43,9 @@ function saveFile(filedata) {
     var fileId,
         files;
 
-    fileId = 'meow-' + Date.now();
+    fileId = String(Date.now());
     files = {};
-    files[fileId + '.txt'] = {
+    files[fileId] = {
         content_type: 'plain/text',
         data: btoa(filedata.content)
     };
@@ -61,7 +61,7 @@ function saveFile(filedata) {
 }
 
 function readFile(fileId) {
-    var fileName = fileId + '.txt';
+    var fileName = String(fileId);
 
     return pouch.get(fileId)
         .then(function (doc) {
@@ -72,7 +72,7 @@ function readFile(fileId) {
 }
 
 function readRawFile(fileId) {
-    var fileName = fileId + '.txt';
+    var fileName = String(fileId);
 
     return pouch.getAttachment(fileId, fileName)
         .then(function (blob) {
