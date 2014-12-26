@@ -9,3 +9,20 @@ body {
 .view {
   margin-top: 35px;
 }
+.view .disabled {
+  position: relative;
+}
+.view .disabled:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: ' ';
+}
+
+.view .disabled label,
+.view .disabled input,
+.view .disabled textarea {
+  color: grey;
+}

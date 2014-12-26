@@ -7,3 +7,24 @@
   resize: vertical;
 }
 
+/* submit button state */
+.upload.view form input[type="submit"] {
+  width: 215px;
+  display: inherit;
+}
+.upload.view form .button.processing {
+  display: none;
+}
+.upload.view form.disabled input[type="submit"] {
+  display: none;
+}
+.upload.view form.disabled .button.processing {
+  display: inherit;
+}
+.upload.view form .button.processing img {
+  position: relative;
+  left: -5px;
+  top: 4px;
+}
+
+

@@ -9,6 +9,10 @@ angular.module('io.risu.thinbin')
                 templateUrl: 'scripts/thinbin/upload/src/views/controllers/uploadView.html',
                 controller: 'UploadController'
             })
+            .when('/upload/:id/done', {
+                templateUrl: 'scripts/thinbin/upload/src/views/controllers/uploadDoneView.html',
+                controller: 'UploadDoneController'
+            })
             .otherwise({
                 redirectTo: '/start'
             });

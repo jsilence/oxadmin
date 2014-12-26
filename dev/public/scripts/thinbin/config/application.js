@@ -1,5 +1,7 @@
 angular.module('io.risu.thinbin')
-    .config(['SettingServiceProvider', function (SettingServiceProvider) {
+    .config(['SettingServiceProvider', 'RestangularProvider', function (SettingServiceProvider, RestangularProvider) {
+
+        RestangularProvider.setBaseUrl('/api');
 
         // configure accepted mimetypes
         SettingServiceProvider.set({

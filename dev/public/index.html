@@ -23,6 +23,7 @@
     <link href="assets/styles/app.css" rel="stylesheet">
     <link href="assets/styles/views/landingView.css" rel="stylesheet">
     <link href="assets/styles/views/uploadView.css" rel="stylesheet">
+    <link href="assets/styles/views/uploadDoneView.css" rel="stylesheet">
     <!-- endbuild -->
 
 </head>
@@ -39,8 +40,22 @@
 <script src="/vendor/jquery/dist/jquery.js"></script>
 <script src="/vendor/angular/angular.js"></script>
 <script src="/vendor/angular-route/angular-route.js"></script>
+
 <script src="/vendor/ng-file-upload/angular-file-upload-shim.js"></script>
 <script src="/vendor/ng-file-upload/angular-file-upload.js"></script>
+
+<script src="/vendor/restangular/dist/restangular.js"></script>
+<script src="/vendor/lodash/dist/lodash.js"></script>
+
+<script src="/vendor/angular-qrcode/qrcode.js"></script>
+<script src="/vendor/qrcodejs/qrcode.js"></script>
+<script src="/vendor/qrcode-generator/js/qrcode.js"></script>
+<script src="/vendor/qrcode-generator/js/qrcode_UTF8.js"></script>
+<script src="/vendor/qrcodejs/qrcode.js"></script>
+
+<script src="/vendor/zeroclipboard/dist/ZeroClipboard.min.js"></script>
+<script src="/vendor/ng-clip/src/ngClip.js"></script>
+
 <!-- endbuild -->
 
 <!-- gulp:thinbin:templates -->
@@ -48,6 +63,7 @@
 <!-- build:app scripts/thinbin.js -->
 <script src="/scripts/thinbin/core/module.js"></script>
 <script src="/scripts/thinbin/core/src/services/settingService.js"></script>
+<script src="/scripts/thinbin/core/src/services/fileService.js"></script>
 
 <script src="/scripts/thinbin/components/module.js"></script>
 <script src="/scripts/thinbin/components/src/directives/confirmedClickDirective.js"></script>
@@ -60,6 +76,7 @@
 
 <script src="/scripts/thinbin/upload/module.js"></script>
 <script src="/scripts/thinbin/upload/src/controllers/uploadController.js"></script>
+<script src="/scripts/thinbin/upload/src/controllers/uploadDoneController.js"></script>
 <script src="/scripts/thinbin/upload/src/services/uploadService.js"></script>
 
 <script src="/scripts/thinbin/app.js"></script>

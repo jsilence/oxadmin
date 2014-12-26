@@ -1,43 +1,49 @@
 <section class="upload view">
 
-    <div class="plaintext method-panel">
+    <form name="uploadForm" ng-submit="onFormSubmit()" novalidate ng-class="{disabled: isProcessing}">
+        <div class="plaintext method-panel">
 
-        <div class="content row">
-            <div class="twelve columns">
-                <h4>Risu Thinbin Upload</h4>
-                <textarea id="exampleMessage" class="u-full-width" placeholder="Paste your plaintext here."></textarea>
+            <div class="content row">
+                <div class="twelve columns">
+                    <h4>Risu Thinbin Upload</h4>
+                    <textarea id="content" class="u-full-width"
+                              placeholder="Paste your plaintext here." ng-model="uploadForm.plaintext.content"></textarea>
+                </div>
             </div>
+
+            <div class="metadata row">
+                <div class="six columns">
+                    <label for="contentTypeSelect">Display Text As</label>
+                    <select class="u-full-width" id="contentTypeSelect" ng-model="uploadForm.plaintext.type">
+                        <option ng-repeat="(key, value) in displayModes" value="{{value}}">{{key}}</option>
+                    </select>
+                </div>
+                <div class="six columns">
+                    <label for="retentionPeriodSelect">Retention Period</label>
+                    <select class="u-full-width" id="retentionPeriodSelect" ng-model="uploadForm.plaintext.retentionPeriod">
+                        <option ng-repeat="(key, value) in retentions" value="{{value}}">{{key}}</option>
+                    </select>
+                </div>
+            </div>
+
         </div>
 
-        <div class="metadata row">
+        <div class="commit row">
             <div class="six columns">
-                <label for="exampleEmailInput">Display Text As</label>
-                <select class="u-full-width" id="exampleRecipientInput">
-                    <option ng-repeat="(key, value) in displayModes" value="{{value}}">{{key}}</option>
-                </select>
+                <label class="contentIsPrivate">
+                    <input type="checkbox" ng-model="uploadForm.plaintext.isPrivate" checked>
+                    <span class="label-body">This is a private upload. It won't appear in the public archive.</span>
+                </label>
             </div>
+
             <div class="six columns">
-                <label for="exampleRecipientInput">Retention Period</label>
-                <select class="u-full-width" id="exampleRecipientInput">
-                    <option ng-repeat="(key, value) in retentions" value="{{value}}">{{key}}</option>
-                </select>
+                <input class="button-primary u-pull-right" type="submit" value="Save This Content">
+                <a class="processing button u-pull-right"><img src="/assets/images/processing.gif" /> Upload in Progress</a>
             </div>
         </div>
+    </form>
 
-    </div>
 
-    <div class="commit row">
-        <div class="six columns">
-            <label class="example-send-yourself-copy">
-                <input type="checkbox" checked>
-                <span class="label-body">This is a private upload. It won't appear in the public archive.</span>
-            </label>
-        </div>
-
-        <div class="six columns">
-            <input class="button-primary u-pull-right" type="submit" value="Save This Content">
-        </div>
-    </div>
 
 
 </section>

@@ -10,7 +10,10 @@
 
     var app = angular.module('io.risu.thinbin', [
         'ngRoute',
+        'ngClipboard',
         'angularFileUpload',
+        'restangular',
+        'monospaced.qrcode',
 
         'io.risu.thinbin.components',
         'io.risu.thinbin.core',

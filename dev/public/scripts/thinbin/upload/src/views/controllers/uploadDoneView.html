@@ -1,0 +1,46 @@
+<section class="upload-done view">
+
+    <div class="content row">
+        <div class="twelve columns">
+            <h4>Your Upload is Ready</h4>
+        </div>
+    </div>
+
+    <div class="content row" ng-if="viewUrl">
+        <!--<div class="three columns">-->
+            <!--<qrcode data="{{viewUrl}}" size="200"></qrcode>-->
+        <!--</div>-->
+
+        <div class="twelve columns">
+            <table class="urls u-full-width">
+                <tbody>
+                <tr>
+                    <td>Thinbin URL</td>
+                    <td><strong><a href="{{viewUrl}}" target="_blank">{{viewUrl}}</a></strong></td>
+                    <td class="button-cell">
+                        <a class="qr button" clip-copy="viewUrl">copy</a>
+                        <a class="copy button" href="#">qr </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Download URL</td>
+                    <td><strong><a href="{{downloadUrl}}" target="_blank">{{downloadUrl}}</a></strong></td>
+                    <td class="button-cell">
+                        <a class="qr button" clip-copy="downloadUrl">copy</a>
+                        <a class="copy button" href="#">qr </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Upload Expires At</td>
+                    <td><strong>DD.MM.YYY HH:MM ()</strong></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <a class="button button-primary u-pull-right primary" href="#/start">New Upload</a></td>
+
+        </div>
+    </div>
+
+</section>

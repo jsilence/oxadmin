@@ -1,0 +1,17 @@
+.upload-done.view a {
+  text-decoration: none;
+}
+
+.upload-done.view table tr {
+  height: 100px;
+}
+
+.upload-done.view .button-cell {
+  text-align: right;
+}
+.upload-done.view .button-cell .button {
+  margin-top: 10px;
+}
+.upload-done.view .qr.button {
+  margin-left: 10px;
+}
