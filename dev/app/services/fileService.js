@@ -5,7 +5,8 @@
 var PouchDB = require('pouchdb'),
     Q = require('q'),
     atob = require('atob'),
-    btoa = require('btoa');
+    btoa = require('btoa'),
+    generateId = require('../utils/generateId.js')();
 
 // module instances
 
@@ -18,7 +19,7 @@ function convertDocumentToMetafile(doc) {
     var meta,
         files = {};
 
-    Object.keys(doc._attachments).forEach(function(key) {
+    Object.keys(doc._attachments).forEach(function (key) {
         var attachment = doc._attachments[key],
             fileName = key;
 
@@ -39,11 +40,9 @@ function convertDocumentToMetafile(doc) {
 
 // service functions
 
-function saveFile(filedata) {
-    var fileId,
-        files;
+function saveFileById(fileId, filedata) {
+    var files;
 
-    fileId = String(Date.now());
     files = {};
     files[fileId] = {
         content_type: 'plain/text',
@@ -58,6 +57,23 @@ function saveFile(filedata) {
     }).catch(function (err) {
         console.log('ERROR:', err);
     });
+}
+
+function saveFile(fileData) {
+    var fileId = generateId();
+
+    return pouch
+        .get(fileId)
+        .then(onIdFound, onIdFree);
+
+    function onIdFound() {
+        // try once again
+        return saveFile(fileData);
+    }
+
+    function onIdFree() {
+        return saveFileById(fileId, fileData);
+    }
 }
 
 function readFile(fileId) {

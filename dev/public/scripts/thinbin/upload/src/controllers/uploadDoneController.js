@@ -6,8 +6,8 @@ angular.module('io.risu.thinbin.upload')
             FileService
                 .readPlaintextFileById($routeParams.id)
                 .then(function (file) {
-                    $scope.viewUrl = '/api/file/' + file.id;
-                    $scope.downloadUrl = '/api/file/' + file.id + '/raw';
+                    $scope.viewUrl = file.viewFileUrl;
+                    $scope.downloadUrl = file.downloadFileUrl;
                 });
         }
     ]);
