@@ -13,7 +13,7 @@ function handleGetFile(request, reply) {
         .then(function (fileDocument) {
             reply(fileDocument);
         })
-        .catch(function () {
+        .catch(function (err) {
             var error = Boom.create(500, 'unexpected error during read file');
             reply(error);
         });
@@ -37,8 +37,8 @@ function handlePostFile(request, reply) {
         .then(function (fileDocument) {
             reply(fileDocument);
         })
-        .catch(function () {
-            var error = Boom.create(500, 'unexpected error during save process');
+        .catch(function (err) {
+            var error = Boom.badRequest(err);
             reply(error);
         });
 }

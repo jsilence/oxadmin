@@ -26,3 +26,45 @@ body {
 .view .disabled textarea {
   color: grey;
 }
+
+#flash-messages {
+  position: fixed;
+  top: -100px;
+  left: 0;
+  width: 100%;
+
+  -ms-interpolation-mode: bicubic;
+  -webkit-transition: top 0.25s;
+  -moz-transition: top 0.25s;
+  -ms-transition: top 0.25s;
+  -o-transition: top 0.25s;
+  transition: top 0.25s;
+}
+
+#flash-messages.visible {
+  top: 0;
+
+  -ms-interpolation-mode: bicubic;
+  -webkit-transition: top 0.25s;
+  -moz-transition: top 0.25s;
+  -ms-transition: top 0.25s;
+  -o-transition: top 0.25s;
+  transition: top 0.25s;
+}
+
+#flash-messages li {
+  width: 100%;
+  text-align: center;
+  color: white;
+  list-style-type: none;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+#flash-messages .success {
+  background-color: green;
+}
+#flash-messages .error {
+  background-color: red;
+}

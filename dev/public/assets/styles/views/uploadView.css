@@ -8,6 +8,7 @@
 }
 
 /* submit button state */
+
 .upload.view form input[type="submit"] {
   width: 215px;
   display: inherit;
@@ -27,4 +28,6 @@
   top: 4px;
 }
 
-
+.upload.view .contentIsPrivate {
+  visibility: hidden;
+}

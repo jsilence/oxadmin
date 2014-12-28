@@ -16,10 +16,11 @@ ConfigFactory
 function startApplication(config) {
 
     var hostname = config.get('hostname'),
-        port = config.get('port');
+        port     = config.get('port');
 
     console.log('hostname: \t', hostname);
     console.log('port: \t\t', port);
+
 
     server.connection({
         host: hostname,
@@ -30,7 +31,20 @@ function startApplication(config) {
         console.log('Server running at:', server.info.uri);
     });
 
+// register api routes
+    console.log('Registering routes');
+
+    server.register({
+        register: require('hapi-router').register,
+        options: {
+            routesDir: (__dirname + '/app/routes/')
+        }
+    }, function (err) {
+        if (err) throw err;
+    });
+
 // serve static contents
+    console.log('Registering public folder');
 
     server.route({
         method: 'GET',
@@ -41,17 +55,6 @@ function startApplication(config) {
                 listing: true
             }
         }
-    });
-
-// register api routes
-
-    server.register({
-        register: require('hapi-router').register,
-        options: {
-            routesDir: (__dirname + '/app/routes/')
-        }
-    }, function (err) {
-        if (err) throw err;
     });
 }
 

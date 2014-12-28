@@ -1,5 +1,11 @@
 <section class="upload view">
 
+    <ol id="flash-messages" ng-class="{visible: errorMessage}">
+        <li class="error">
+            {{errorMessage}}
+        </li>
+    </ol>
+
     <form name="uploadForm" ng-submit="onFormSubmit()" novalidate ng-class="{disabled: isProcessing}">
         <div class="plaintext method-panel">
 

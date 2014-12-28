@@ -1,7 +1,7 @@
 angular.module('io.risu.thinbin.upload')
     .controller('UploadController',
-    ['$scope', '$routeParams', '$location', 'UploadService', 'FileService',
-        function ($scope, $routeParams, $location, UploadService, FileService) {
+    ['$scope', '$routeParams', '$location', '$timeout', 'UploadService', 'FileService',
+        function ($scope, $routeParams, $location, $timeout, UploadService, FileService) {
 
             $scope.isProcessing = false;
             $scope.retentions = UploadService.getTranslatedRetentions();
@@ -17,8 +17,14 @@ angular.module('io.risu.thinbin.upload')
                         $location.path(url);
                     }
 
-                    function onError() {
+                    function onError(response) {
+                        var error = response.data;
+                        $scope.errorMessage = error.message;
                         $scope.isProcessing = false;
+
+                        $timeout(function() {
+                            $scope.errorMessage = undefined;
+                        }, 5000);
                     }
 
             };

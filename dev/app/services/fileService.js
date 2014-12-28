@@ -6,11 +6,20 @@ var PouchDB = require('pouchdb'),
     Q = require('q'),
     atob = require('atob'),
     btoa = require('btoa'),
-    generateId = require('../utils/generateId.js')();
+    generateId = require('../utils/generateId')(),
+    ConfigFactory = require('../services/configFactory'),
+    settings;
 
 // module instances
 
-var pouch = PouchDB('/tmp/thinbin');
+var pouch = PouchDB('/tmp/thinbin'),
+    settings;
+
+ConfigFactory
+    .create()
+    .then(function(config) {
+        settings = config;
+    });
 
 // private helpers
 
@@ -38,25 +47,58 @@ function convertDocumentToMetafile(doc) {
     return meta;
 }
 
+function validateFileRequirements(filedata) {
+    var error,
+        sharedSettings = settings.get('shared'),
+        validRetentions = sharedSettings.retentions;
+
+    validRetentions = Object.keys(validRetentions)
+                            .map(function(key) { return validRetentions[key]; });
+
+    if(!error && filedata.content === undefined) {
+        error = 'Content is not defined.';
+    }
+    if(!error && filedata.content.length > sharedSettings.maxFileSizeBytes) {
+        error = 'Provided content exceeds upload filsize limit.';
+    }
+    if(!filedata.retentionPeriod) {
+        error = 'Retention period is missing.';
+    }
+    if(!error && validRetentions.indexOf(filedata.retentionPeriod) > -1) {
+        error = 'Given retention period is not available.';
+    }
+
+    return error;
+}
+
 // service functions
 
 function saveFileById(fileId, filedata) {
-    var files;
+    var files,
+        deferred = Q.defer(),
+        validationError = validateFileRequirements(filedata);
 
-    files = {};
-    files[fileId] = {
-        content_type: 'plain/text',
-        data: btoa(filedata.content)
-    };
+    if(validationError) {
+        deferred.reject(validationError);
+    } else {
+        files = {};
+        files[fileId] = {
+            content_type: 'plain/text',
+            data: btoa(filedata.content)
+        };
 
-    return pouch.put({
-        _id: fileId,
-        _attachments: files
-    }).then(function (doc) {
-        return readFile(fileId);
-    }).catch(function (err) {
-        console.log('ERROR:', err);
-    });
+        pouch.put({
+            _id: fileId,
+            _attachments: files
+        }).then(function (doc) {
+            deferred.resolve(readFile(fileId));
+        }).catch(function (err) {
+            console.log('ERROR:', err);
+            deferred.resolve(err);
+        });
+    }
+
+    return deferred.promise;
 }
 
 function saveFile(fileData) {
