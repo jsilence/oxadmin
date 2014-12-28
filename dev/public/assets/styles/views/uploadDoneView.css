@@ -15,3 +15,20 @@
 .upload-done.view .qr.button {
   margin-left: 10px;
 }
+
+.upload-done-view .modal .content {
+  width: 100%;
+}
+
+.upload-done.view .qr-code-modal {
+  background-color: white;
+  border-radius: 4px;
+  width: 300px;
+  height: 340px;
+  margin: 50px auto;
+  padding-top: 20px;
+}
+
+.upload-done.view .qr-code-modal .button {
+  margin-top: 10px;
+}
