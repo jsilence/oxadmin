@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="content row" ng-if="viewUrl">
+    <div class="content row" ng-if="file">
 
 
         <div class="twelve columns">
@@ -28,23 +28,23 @@
                 <tbody>
                 <tr>
                     <td>Thinbin URL</td>
-                    <td><strong><a href="{{viewUrl}}" target="_blank">{{viewUrl}}</a></strong></td>
+                    <td><strong><a href="{{file.viewFileUrl}}" target="_blank">{{file.viewFileUrl}}</a></strong></td>
                     <td class="button-cell">
                         <a class="qr button" clip-copy="viewUrl">copy</a>
-                        <a class="copy button" ng-click="showQrCode('Thinbin Url', viewUrl)">qr </a>
+                        <a class="copy button" ng-click="showQrCode('Thinbin Url', file.viewFileUrl)">qr </a>
                     </td>
                 </tr>
                 <tr>
                     <td>Download URL</td>
-                    <td><strong><a href="{{downloadUrl}}" target="_blank">{{downloadUrl}}</a></strong></td>
+                    <td><strong><a href="{{file.downloadFileUrl}}" target="_blank">{{file.downloadFileUrl}}</a></strong></td>
                     <td class="button-cell">
                         <a class="qr button" clip-copy="downloadUrl">copy</a>
-                        <a class="copy button" ng-click="showQrCode('Download Url', downloadUrl)">qr </a>
+                        <a class="copy button" ng-click="showQrCode('Download Url', file.downloadFileUrl)">qr </a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Upload Expires At</td>
-                    <td><strong>DD.MM.YYY HH:MM ()</strong></td>
+                    <td>Upload Expires</td>
+                    <td><strong>{{file.expiresAt}}</strong></td>
                     <td></td>
                 </tr>
                 </tbody>

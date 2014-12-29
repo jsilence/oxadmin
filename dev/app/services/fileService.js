@@ -12,13 +12,14 @@ var PouchDB = require('pouchdb'),
 
 // module instances
 
-var pouch = PouchDB('/tmp/thinbin'),
+var pouch,
     settings;
 
 ConfigFactory
     .create()
     .then(function(config) {
         settings = config;
+        pouch = PouchDB(config.pouchStorePath);
     });
 
 // private helpers
@@ -41,7 +42,7 @@ function convertDocumentToMetafile(doc) {
     meta = {
         id: doc._id,
         files: files,
-        expiresAt: (doc.expiresAt || null),
+        expiresAt: (doc.expiresAt || null)
     };
 
     return meta;
@@ -64,8 +65,11 @@ function validateFileRequirements(filedata) {
     if(!filedata.retentionPeriod) {
         error = 'Retention period is missing.';
     }
-    if(!error && validRetentions.indexOf(filedata.retentionPeriod) > -1) {
+    if(!error && validRetentions.indexOf(filedata.retentionPeriod) == -1) {
         error = 'Given retention period is not available.';
+    }
+    if(!error && isNaN(filedata.retentionPeriod)) {
+        error = 'Given retention period is not valid.';
     }
 
     return error;
@@ -74,6 +78,9 @@ function validateFileRequirements(filedata) {
 // service functions
 
 function saveFileById(fileId, filedata) {
+
+    filedata.retentionPeriod = Number(filedata.retentionPeriod);
+
     var files,
         deferred = Q.defer(),
         validationError = validateFileRequirements(filedata);
@@ -84,12 +91,13 @@ function saveFileById(fileId, filedata) {
         files = {};
         files[fileId] = {
             content_type: 'plain/text',
-            data: btoa(filedata.content)
+            data: btoa(filedata.content),
         };
 
         pouch.put({
             _id: fileId,
-            _attachments: files
+            _attachments: files,
+            expiresAt: (filedata.retentionPeriod + Date.now())
         }).then(function (doc) {
             deferred.resolve(readFile(fileId));
         }).catch(function (err) {
