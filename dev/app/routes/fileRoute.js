@@ -43,6 +43,18 @@ function handlePostFile(request, reply) {
         });
 }
 
+function handleDeleteAll(request, reply) {
+    FileService
+        .deleteAllExpiredFiles()
+        .then(function (result) {
+            reply(result);
+        })
+        .catch(function (err) {
+            var error = Boom.badRequest(err);
+            reply(error);
+        });
+}
+
 // exported api
 
 module.exports = [
@@ -60,5 +72,10 @@ module.exports = [
         path: '/api/file/{id}',
         method: 'GET',
         handler: handleGetFile
+    },
+    {
+        path: '/api/files',
+        method: 'DELETE',
+        handler: handleDeleteAll
     }
 ];

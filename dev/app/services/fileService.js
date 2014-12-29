@@ -17,9 +17,11 @@ var pouch,
 
 ConfigFactory
     .create()
-    .then(function(config) {
+    .then(function (config) {
         settings = config;
-        pouch = PouchDB(config.pouchStorePath);
+        console.log('Using Pouch with: ', config.get('pouchStore'));
+
+        pouch = PouchDB(config.get('pouchStore'));
     });
 
 // private helpers
@@ -54,25 +56,31 @@ function validateFileRequirements(filedata) {
         validRetentions = sharedSettings.retentions;
 
     validRetentions = Object.keys(validRetentions)
-                            .map(function(key) { return validRetentions[key]; });
+        .map(function (key) {
+            return validRetentions[key];
+        });
 
-    if(!error && filedata.content === undefined) {
+    if (!error && filedata.content === undefined) {
         error = 'Content is not defined.';
     }
-    if(!error && filedata.content.length > sharedSettings.maxFileSizeBytes) {
+    if (!error && filedata.content.length > sharedSettings.maxFileSizeBytes) {
         error = 'Provided content exceeds upload filsize limit.';
     }
-    if(!filedata.retentionPeriod) {
+    if (!filedata.retentionPeriod) {
         error = 'Retention period is missing.';
     }
-    if(!error && validRetentions.indexOf(filedata.retentionPeriod) == -1) {
+    if (!error && validRetentions.indexOf(filedata.retentionPeriod) == -1) {
         error = 'Given retention period is not available.';
     }
-    if(!error && isNaN(filedata.retentionPeriod)) {
+    if (!error && isNaN(filedata.retentionPeriod)) {
         error = 'Given retention period is not valid.';
     }
 
     return error;
+}
+
+function isFileExpired(file) {
+    return (!doc.expiresAt) || (doc.expiresAt <= Date.now());
 }
 
 // service functions
@@ -85,7 +93,7 @@ function saveFileById(fileId, filedata) {
         deferred = Q.defer(),
         validationError = validateFileRequirements(filedata);
 
-    if(validationError) {
+    if (validationError) {
         deferred.reject(validationError);
     } else {
         files = {};
@@ -97,7 +105,8 @@ function saveFileById(fileId, filedata) {
         pouch.put({
             _id: fileId,
             _attachments: files,
-            expiresAt: (filedata.retentionPeriod + Date.now())
+//            expiresAt: (filedata.retentionPeriod + Date.now())
+            expiresAt: 0
         }).then(function (doc) {
             deferred.resolve(readFile(fileId));
         }).catch(function (err) {
@@ -129,7 +138,7 @@ function saveFile(fileData) {
 function readFile(fileId) {
     var fileName = String(fileId);
 
-    return pouch.get(fileId)
+    return pouch.get(fileName)
         .then(function (doc) {
             return convertDocumentToMetafile(doc);
         }).catch(function (err) {
@@ -148,10 +157,61 @@ function readRawFile(fileId) {
         });
 }
 
+function readExpiredFilesMeta() {
+    var deferred = Q.defer();
+
+    function map(doc) {
+        if (!doc.expiresAt || doc.expiresAt <= Date.now()) {
+            emit(doc._id);
+        }
+    }
+
+    return pouch.query({map: map}, {reduce: false}, function (err, response) {
+        if (err) {
+            deferred.resolve(err);
+        } else {
+            deferred.resolve(response);
+        }
+    });
+}
+
+function deleteFileById(fileId) {
+    return pouch.get(fileId)
+        .then(function (doc) {
+            return pouch.remove(doc)
+                .then(function(f) {
+                    return doc;
+                }).catch(function(err) {
+                    console.log('File deletion failed', err);
+                });
+        }).catch(function (err) {
+            console.log('ERROR:', err);
+        });
+}
+
+function deleteAllExpiredFiles() {
+    return readExpiredFilesMeta()
+        .then(function (result) {
+            var promises = result.rows.map(function (meta) {
+                return deleteFileById(meta.key);
+            });
+
+            return Q.all(promises).then(function(deletedDocs) {
+                return deletedDocs.map(convertDocumentToMetafile);
+            });
+        }).catch(function (err) {
+            console.log('ERROR:', err);
+        });
+}
+
+
 // exported api
 
 module.exports = {
     saveFile: saveFile,
     readFile: readFile,
-    readRawFile: readRawFile
+    readRawFile: readRawFile,
+    deleteFile: deleteFileById,
+    readExpiredFilesMeta: readExpiredFilesMeta,
+    deleteAllExpiredFiles: deleteAllExpiredFiles,
 };

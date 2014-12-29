@@ -14,20 +14,25 @@ var configDir = path.join(__dirname, '/../../config');
 
 function createConfig() {
     var deferred = Q.defer(),
+        confitLoader,
         options = {
             basedir: configDir
         };
 
-    confit(options)
-        .addDefault('production.json')
-        .addOverride('development.json')
-        .create(function (err, conf) {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                deferred.resolve(conf);
-            }
-        });
+    confitLoader = confit(options).addDefault('production.json');
+
+    if (process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() === 'development') {
+        console.log('Running in development');
+        confitLoader = confitLoader.addOverride('development.json');
+    }
+
+    confitLoader.create(function (err, conf) {
+        if (err) {
+            deferred.reject(err);
+        } else {
+            deferred.resolve(conf);
+        }
+    });
 
     return deferred.promise;
 }
