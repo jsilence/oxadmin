@@ -105,8 +105,7 @@ function saveFileById(fileId, filedata) {
         pouch.put({
             _id: fileId,
             _attachments: files,
-//            expiresAt: (filedata.retentionPeriod + Date.now())
-            expiresAt: 0
+            expiresAt: (filedata.retentionPeriod + Date.now())
         }).then(function (doc) {
             deferred.resolve(readFile(fileId));
         }).catch(function (err) {
