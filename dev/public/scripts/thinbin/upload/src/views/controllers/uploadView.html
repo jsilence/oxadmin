@@ -13,21 +13,21 @@
                 <div class="twelve columns">
                     <h4>Risu Thinbin Upload</h4>
                     <textarea id="content" class="u-full-width"
-                              placeholder="Paste your plaintext here." ng-model="uploadForm.plaintext.content"></textarea>
+                              placeholder="Paste your content here." ng-model="uploadForm.plaintext.content"></textarea>
                 </div>
             </div>
 
             <div class="metadata row">
                 <div class="six columns">
                     <label for="contentTypeSelect">Display Text As</label>
-                    <select class="u-full-width" id="contentTypeSelect" ng-model="uploadForm.plaintext.type">
-                        <option ng-repeat="(key, value) in displayModes" value="{{value}}" ng-selected="value === defaultMode">{{key}}</option>
+                    <select class="u-full-width" id="contentTypeSelect" ng-model="uploadForm.plaintext.type" ng-init="uploadForm.plaintext.type = defaultMode">
+                        <option ng-repeat="(key, value) in displayModes" value="{{value}}" ng-selected="value == defaultMode" >{{key}}</option>
                     </select>
                 </div>
                 <div class="six columns">
                     <label for="retentionPeriodSelect">Retention Period</label>
-                    <select class="u-full-width" id="retentionPeriodSelect" ng-model="uploadForm.plaintext.retentionPeriod">
-                        <option ng-repeat="(key, value) in retentions" value="{{value}}" ng-selected="value === defaultRetention">{{key}}</option>
+                    <select class="u-full-width" id="retentionPeriodSelect" ng-model="uploadForm.plaintext.retentionPeriod" ng-init="uploadForm.plaintext.retentionPeriod = defaultRetention">
+                        <option ng-repeat="(key, value) in retentions" value="{{value}}" ng-selected="value == defaultRetention">{{key}}</option>
                     </select>
                 </div>
             </div>

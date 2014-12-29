@@ -66,14 +66,14 @@ function validateFileRequirements(filedata) {
     if (!error && filedata.content.length > sharedSettings.maxFileSizeBytes) {
         error = 'Provided content exceeds upload filsize limit.';
     }
+    if (!error && isNaN(filedata.retentionPeriod)) {
+        error = 'Given retention period is not valid.';
+    }
     if (!filedata.retentionPeriod) {
         error = 'Retention period is missing.';
     }
     if (!error && validRetentions.indexOf(filedata.retentionPeriod) == -1) {
         error = 'Given retention period is not available.';
-    }
-    if (!error && isNaN(filedata.retentionPeriod)) {
-        error = 'Given retention period is not valid.';
     }
 
     return error;

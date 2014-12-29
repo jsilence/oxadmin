@@ -6,7 +6,7 @@ angular.module('io.risu.thinbin.upload')
             $scope.isProcessing = false;
 
             $scope.displayModes = UploadService.getTranslatedDisplayModes();
-            $scope.defaultMode  = '_plain_text';
+            $scope.defaultMode  = $scope.displayModes['_plaintext'];
 
             $scope.retentions = UploadService.getTranslatedRetentions();
             var shortestRetention = Object.keys($scope.retentions)
@@ -16,7 +16,8 @@ angular.module('io.risu.thinbin.upload')
 
                     return prev < curr ? prevKey : currKey;
                 });
-            $scope.defaultRetention = $scope.retentions[shortestRetention];
+
+            $scope.defaultRetention = $scope.retentions['_24_hours'];
 
             $scope.onFormSubmit = function onSubmitClick() {
                 $scope.isProcessing = true;

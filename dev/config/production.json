@@ -9,6 +9,12 @@
         "maxFileSizeBytes": 524288000,
         "allowedPlaintextMimes": [
             "text/plain",
+            "text/javascript",
+            "text/html",
+            "text/css",
+            "text/sql",
+            "text/bash",
+            "text/c",
             "*/*"
         ],
         "allowedBinaryMimes": [
@@ -26,13 +32,13 @@
             "_1_year": 32140800000
         },
         "displayModes": {
-            "_plain_text": "_plain_text",
-            "_javascript": "_javascript",
-            "_html": "_html",
-            "_css": "_css",
-            "_sql": "_sql",
-            "_bash": "_plain_text",
-            "_c": "_c"
+            "_plaintext": "text/plain",
+            "_javascript": "text/javascript",
+            "_html": "text/html",
+            "_css": "text/css",
+            "_sql": "text/sql",
+            "_bash": "text/bash",
+            "_c": "text/c"
         }
     }
 }
