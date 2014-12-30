@@ -17,13 +17,17 @@
     <link rel="stylesheet" type="text/css" href="vendor/skeleton/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="vendor/skeleton/css/skeleton.css">
     <link rel="stylesheet" type="text/css" href="vendor/fontawesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="vendor/highlightjs/styles/github.css">
+
     <!-- endbuild -->
+
 
     <!-- build:css assets/styles/thinbin.css -->
     <link href="assets/styles/app.css" rel="stylesheet">
     <link href="assets/styles/views/landingView.css" rel="stylesheet">
     <link href="assets/styles/views/uploadView.css" rel="stylesheet">
     <link href="assets/styles/views/uploadDoneView.css" rel="stylesheet">
+    <link href="assets/styles/views/plaintextView.css" rel="stylesheet">
     <!-- endbuild -->
 
 </head>
@@ -55,6 +59,9 @@
 <script src="/vendor/ng-clip/src/ngClip.js"></script>
 
 <script src="/vendor/moment/moment.js"></script>
+
+<script src="/vendor/highlightjs/highlight.pack.js"></script>
+<script src="/vendor/angular-highlightjs/angular-highlightjs.js"></script>
 <!-- endbuild -->
 
 <!-- gulp:thinbin:templates -->
@@ -77,6 +84,9 @@
 <script src="/scripts/thinbin/upload/src/controllers/uploadController.js"></script>
 <script src="/scripts/thinbin/upload/src/controllers/uploadDoneController.js"></script>
 <script src="/scripts/thinbin/upload/src/services/uploadService.js"></script>
+
+<script src="/scripts/thinbin/plaintext/module.js"></script>
+<script src="/scripts/thinbin/plaintext/src/controllers/plaintextController.js"></script>
 
 <script src="/scripts/thinbin/app.js"></script>
 <script src="/scripts/thinbin/config/routes.js"></script>

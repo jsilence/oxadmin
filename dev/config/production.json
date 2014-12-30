@@ -18,6 +18,7 @@
             "*/*"
         ],
         "allowedBinaryMimes": [
+            "application/octet-stream",
             "*/*"
         ],
         "retentions": {
@@ -33,12 +34,7 @@
         },
         "displayModes": {
             "_plaintext": "text/plain",
-            "_javascript": "text/javascript",
-            "_html": "text/html",
-            "_css": "text/css",
-            "_sql": "text/sql",
-            "_bash": "text/bash",
-            "_c": "text/c"
+            "_binary": "*/*"
         }
     }
 }

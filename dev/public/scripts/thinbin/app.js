@@ -14,11 +14,13 @@
         'angularFileUpload',
         'restangular',
         'monospaced.qrcode',
+        'hljs',
 
         'io.risu.thinbin.components',
         'io.risu.thinbin.core',
         'io.risu.thinbin.landing',
         'io.risu.thinbin.upload',
+        'io.risu.thinbin.plaintext',
 
         'templates'
     ]);

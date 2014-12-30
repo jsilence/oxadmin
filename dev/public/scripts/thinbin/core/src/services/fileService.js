@@ -1,12 +1,20 @@
 angular.module('io.risu.thinbin.core')
-    .factory('FileService', ['SettingService', 'Restangular', function (SettingService, Restangular) {
+    .factory('FileService', ['$location', 'SettingService', 'Restangular', function ($location, SettingService, Restangular) {
 
         // helpers
 
         function decorateFile(file) {
             var apiUrl = SettingService.get('apiUrl');
 
-            file.viewFileUrl = apiUrl + '/file/' + file.id;
+            var appUrl = [
+                $location.protocol(),
+                '://',
+                $location.host(),
+                $location.port() ? ':' + $location.port() : '',
+                '/'
+            ].join('');
+
+            file.viewFileUrl = appUrl + '#/plaintext/' + file.id;
             file.downloadFileUrl = apiUrl + '/file/' + file.id + '/raw';
 
             return file;

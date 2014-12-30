@@ -1,0 +1,21 @@
+<section class="plaintext view">
+
+    <div class="content row">
+        <div class="six columns">
+            <h4>Risu Thinbin</h4>
+            <small>This Upload expires {{file.expiresAt}}</small>
+        </div>
+        <div>
+            <a class="upload button button-primary u-pull-right" href="#/start">new upload</a>
+            <a class="copy button u-pull-right" clip-copy="source">copy content</a>
+        </div>
+    </div>
+
+    <div class="content row" ng-if="file">
+        <div class="twelve columns">
+            <div hljs ng-if="source" source="source">
+            </div>
+        </div>
+    </div>
+
+</section>
