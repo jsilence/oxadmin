@@ -1,5 +1,5 @@
 angular.module('oxadmin.core')
-    .factory('FileService', ['$location', 'SettingService', 'Restangular', function ($location, SettingService, Restangular) {
+    .factory('FileService', ['$location', 'SettingService', function ($location, SettingService) {
 
 	// this file is only for reference and examples
 

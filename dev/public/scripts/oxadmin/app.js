@@ -11,7 +11,6 @@
     var app = angular.module('oxadmin', [
         'ngRoute',
 
-        'oxadmin.components',
         'oxadmin.core',
         'oxadmin.landing',
 

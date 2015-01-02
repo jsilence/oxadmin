@@ -3,8 +3,7 @@ angular.module('oxadmin.landing')
     ['$scope', '$location', 'SettingService',
         function ($scope, $location, SettingService) {
 
-            $scope.allowedPlaintextMimes = SettingService.get('allowedPlaintextMimes').join(',');
-            $scope.allowedBinaryMimes    = SettingService.get('allowedBinaryMimes').join(',');
+//            $scope.allowedPlaintextMimes = SettingService.get('allowedPlaintextMimes').join(',');
 
             console.log($scope.allowedPlaintextMimes, $scope.allowedBinaryMimes);
 
