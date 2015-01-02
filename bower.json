@@ -1,11 +1,11 @@
 {
-  "name": "thinbin",
+  "name": "oxadmin",
   "version": "0.0.0",
-  "homepage": "http://www.risu.io/",
+  "homepage": "",
   "authors": [
     "Dennis Wilson <dw@risu.io>"
   ],
-  "description": "Risu Thinbin",
+  "description": "OXAdmin",
   "main": "build/**/*",
   "ignore": [
     "**/.*",
