@@ -26,9 +26,8 @@ var PATHS = {
 };
 
 
-gulp.task('build-server', ['clean-server', 'copy-dependencies', 'copy-server']);
 gulp.task('build-client', ['clean-client', 'templates', 'compress', 'assets']);
-gulp.task('build', ['clean-all', 'build-server', 'build-client']);
+gulp.task('build', ['clean-all', 'build-client']);
 
 /* shared tasks */
 
@@ -40,7 +39,7 @@ gulp.task('clean-all', function () {
 
 
 gulp.task('freeze', function () {
-    var filename = [Date.now(), 'thinbin.tar'].join('-');
+    var filename = [Date.now(), 'oxadmin.tar'].join('-');
 
     return gulp.src('build/**/*')
         .pipe(tar(filename))
@@ -62,7 +61,7 @@ gulp.task('assets', ['clean-client'], function () {
 
 gulp.task('usemin', ['clean-client'], function () {
     return gulp.src(PATHS.app)
-        .pipe(replace('<!-- gulp:thinbin:templates -->', '<script src="scripts/goldbin.templates.js"></script>'))
+        .pipe(replace('<!-- gulp:oxadmin:templates -->', '<script src="scripts/oxadmin.templates.js"></script>'))
         .pipe(usemin({
             css: [minifyCss()]
         }))
@@ -79,7 +78,7 @@ gulp.task('templates', ['clean-client'], function () {
 
     var scriptsPath = [PATHS.dist_public, '/scripts'].join('');
 
-    return gulp.src('dev/public/scripts/goldbin/**/*.html')
+    return gulp.src('dev/public/scripts/oxadmin/**/*.html')
         .pipe(minifyHtml({
             empty: true,
             spare: true,
@@ -87,46 +86,12 @@ gulp.task('templates', ['clean-client'], function () {
         }))
         .pipe(ngHtml2Js({
             moduleName: 'templates',
-            prefix: 'scripts/goldbin/'
+            prefix: 'scripts/oxadmin/'
         }))
         .pipe(uglifyJs())
-        .pipe(concat('goldbin.templates.js'))
+        .pipe(concat('oxadmin.templates.js'))
         .pipe(gulp.dest(scriptsPath));
 
 });
-
-/* tasks for building the server */
-gulp.task('clean-server', function () {
-//    return gulp
-//        .src('!' + PATHS.dist + '/public/**/*')
-//        .pipe(clean());
-});
-
-gulp.task('copy-dependencies', ['clean-server'], function () {
-    var scriptsPath = PATHS.dist;
-    var base = 'node_modules/';
-    var whitelist = Object.keys(dependencies).map(function(npm) {
-        return [base, npm, '**', '*'].join('/');
-    });
-
-    gulp.src('package.json')
-        .pipe(gulp.dest(scriptsPath));
-
-    return gulp.src(whitelist, {base: '.'})
-        .pipe(gulp.dest(scriptsPath));
-});
-
-gulp.task('copy-server', ['copy-dependencies'], function () {
-    var scriptsPath = PATHS.dist;
-    var sources = [
-        'dev/app/**/*',
-        'dev/config/**/*',
-        'dev/server.js'
-    ];
-
-    return gulp.src(sources, {base: './dev'})
-        .pipe(gulp.dest(scriptsPath))
-});
-
 
 
